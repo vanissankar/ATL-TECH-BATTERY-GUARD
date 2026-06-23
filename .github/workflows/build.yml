@@ -1,0 +1,76 @@
+name: Build ATL TECH BATTERY GUARD
+
+on:
+push:
+branches:
+- main
+
+workflow_dispatch:
+
+jobs:
+
+windows-build:
+
+```
+runs-on: windows-latest
+
+steps:
+
+  - name: Checkout Repository
+    uses: actions/checkout@v4
+
+  - name: Setup Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: "3.11"
+
+  - name: Install Dependencies
+    run: |
+      pip install -r requirements.txt
+      pip install pyinstaller
+
+  - name: Build Windows EXE
+    run: |
+      pyinstaller battery_monitor_v3.spec
+
+  - name: Upload Windows Build
+    uses: actions/upload-artifact@v4
+    with:
+      name: ATL_TECH_BATTERY_GUARD_WINDOWS
+      path: dist/**
+```
+
+macos-build:
+
+```
+runs-on: macos-latest
+
+steps:
+
+  - name: Checkout Repository
+    uses: actions/checkout@v4
+
+  - name: Setup Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: "3.11"
+
+  - name: Install Dependencies
+    run: |
+      pip install -r requirements.txt
+      pip install pyinstaller
+
+  - name: Build macOS APP
+    run: |
+      pyinstaller \
+        --windowed \
+        --name "ATL TECH BATTERY GUARD" \
+        --icon assets/battery_guard.icns \
+        battery_monitor_v3.py
+
+  - name: Upload macOS Build
+    uses: actions/upload-artifact@v4
+    with:
+      name: ATL_TECH_BATTERY_GUARD_MACOS
+      path: dist/**
+```
