@@ -1,0 +1,7 @@
+customtkinter
+psutil
+pystray
+pillow
+plyer
+pyinstaller
+pywinstyles
