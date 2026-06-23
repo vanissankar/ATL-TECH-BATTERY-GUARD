@@ -1,0 +1,8 @@
+{
+    "version": "3.0.0",
+    "high_limit": 90,
+    "low_limit": 20,
+    "startup": true,
+    "high_alert_repeat": 30,
+    "low_alert_repeat": 30
+}
